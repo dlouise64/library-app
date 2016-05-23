@@ -6,7 +6,7 @@
     {{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="7" value=message}}
   </div>
   <div class="col-xs-10">
-      <button class="btn btn-primary btn-lg btn-block" disabled={{contactFormDisabled}} {{action 'sendMessage'}}>Send Message</button>
+      <button class="btn btn-primary btn-lg btn-block" disabled={{isNotValid}} {{action 'sendMessage'}}>Send Message</button>
   </div>
 
 </div>

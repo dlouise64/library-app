@@ -2,32 +2,20 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
-
   emailIsValid: Ember.computed.match('emailAddress', /^.+@.+\..+$/),
   emailDisabled: Ember.computed.not('emailIsValid'),
-
   msgIsValid: Ember.computed.gte('message.length', 5),
-
   msgDisabled: Ember.computed.not('msgIsValid'),
 
   emailAddress: '',
-
   message: '',
 
-  contactFormDisabled: Ember.computed.or('emailDisabled', 'msgDisabled'),
-
-  emailAddressChanged: Ember.observer('emailAddress', function() { 
-    console.log('observer is called', this.get('emailAddress')); 
-  }),
-  
-  textMessage: Ember.observer('message', function() { 
-    console.log('observer is called', this.get('message')); 
-  }),
+  isValid: Ember.computed.and('emailIsValid', 'msgIsValid'),
+  isNotValid: Ember.computed.not('isValid'),
   
   actions: {
 
     sendMessage() {
-      alert(`Send Message in progress: ${this.get('message')}`);
       this.set('responseMessage', `Thank you! Your message has been sent.`);
       this.set('emailAddress', '');
       this.set('message', '');
